@@ -1,0 +1,15 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+#overlay {
+  position: absolute; 
+  color: #FFF; 
+  text-align: center;
+  background-color: rgba(221, 221, 221, 0.0);
+  top:0;
+  z-index: 2147483647;
+  pointer-events:none;
+}
