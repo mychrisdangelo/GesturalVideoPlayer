@@ -69,6 +69,7 @@ function mouseMoveEvent(x, y)
 {
   if (_isDown)
   {
+    console.log('(' + x + ', ' + y + ')');
     x -= _rc.x;
     y -= _rc.y - getScrollY();
     _points[_points.length] = new Point(x, y); // append
