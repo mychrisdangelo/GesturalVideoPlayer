@@ -18,6 +18,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/vendor/dollar.js"></script>
+        <script type="text/javascript" src="js/vendor/video_script.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body onload="onLoadEvent()">
@@ -25,31 +26,48 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
 
 
-    <div class="contaasdfasdfiner">
+    <div class="container">
       <div id="player">
         <video id="myVideo" controls width="640" height="480"        
                onmousedown="mouseDownEvent(event.clientX, event.clientY)"
                onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
                onmouseup="mouseUpEvent(event.clientX, event.clientY)"
-               oncontextmenu="return false;">
-         <source src="http://media.w3.org/2010/05/bunny/trailer.mp4"
+               oncontextmenu="return false;"
+               poster="http://media.w3.org/2010/05/sintel/poster.png">
+         <source src="http://media.w3.org/2010/05/sintel/trailer.mp4"
                  type='video/mp4; codecs="avc1, mp4a"'>
-         <source src="http://media.w3.org/2010/05/bunny/trailer.ogv"
+         <source src="http://media.w3.org/2010/05/sintel/trailer.ogv"
                  type='video/ogg; codecs="theora, vorbis"'>
          Your user agent does not support the HTML5 Video element.
         </video>
-        <button type="button" onclick="vid_play_pause()">Play/Pause</button>
-        <script>
-        function vid_play_pause() {
-          var myVideo = document.getElementById("myVideo");
-          if (myVideo.paused) {
-            myVideo.play();
-          } else {
-            myVideo.pause();
-          }
-        }
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="showGestureTrail" checked> Show Gesture Trail
+          </label>
+        </div>
 
-        </script>
+
+        <div class="alert alert-warning" hidden></div>
+
+        <div id='buttons'>
+          <button onclick="vid_play_pause()">play/pause</button>
+          <button onclick="vid_seek_forward()">seek forward</button>
+          <button onclick="vid_seek_backward()">seek backward</button>
+          <button onclick="document._video.currentTime-=10">currentTime-=10</button>
+          <button onclick="document._video.currentTime=50">currentTime=50</button><br>
+          <button onclick="document._video.playbackRate++">playbackRate++</button>
+          <button onclick="document._video.playbackRate--">playbackRate--</button>
+          <button onclick="document._video.playbackRate+=0.1">playbackRate+=0.1</button>
+          <button onclick="document._video.playbackRate-=0.1">playbackRate-=0.1</button><br>
+          <button onclick="document._video.volume+=0.1">volume+=0.1</button>
+          <button onclick="document._video.volume-=0.1">volume-=0.1</button>
+          <button onclick="document._video.muted=true">muted=true</button>
+          <button onclick="document._video.muted=false">muted=false</button><br>
+          <button onclick="switchVideo(0);">Sintel teaser</button>
+          <button onclick="switchVideo(1);">Bunny trailer</button>
+          <button onclick="switchVideo(2);">Bunny movie</button>
+          <button onclick="switchVideo(3);">Test movie</button>
+        </div>
       </div>
 
       <canvas id="overlay" width="640" height="480"></canvas>

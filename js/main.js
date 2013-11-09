@@ -60,7 +60,10 @@ function mouseDownEvent(x, y)
 
   _points.length = 1; // clear
   _points[0] = new Point(x, y);
-  _g.fillRect(x - 4, y - 3, 9, 9);
+  var result = document.getElementById('showGestureTrail').checked;
+  if (result === true) {
+    _g.fillRect(x - 4, y - 3, 9, 9);
+  } 
 }
 function mouseMoveEvent(x, y)
 {
@@ -69,7 +72,10 @@ function mouseMoveEvent(x, y)
     x -= _rc.x;
     y -= _rc.y - getScrollY();
     _points[_points.length] = new Point(x, y); // append
-    drawConnectedPoint(_points.length - 2, _points.length - 1);
+    var result = document.getElementById('showGestureTrail').checked;
+    if (result === true) {
+      drawConnectedPoint(_points.length - 2, _points.length - 1);
+    } 
   }
 }
 function mouseUpEvent(x, y)
@@ -82,13 +88,21 @@ function mouseUpEvent(x, y)
     if (_points.length >= 10)
     {
       var result = _r.Recognize(_points, false);
+      console.log(result.Name);
       if (result.Name == "circle") {
         vid_play_pause();
-      } else {
+      } else if (result.Name == "seekForward") {
+        vid_seek_forward();
+      } else if (result.Name == "seekBackward") {
+        vid_seek_backward();
       }
+      $(".alert").hide();
+    } else {
+      $(".alert").show();
+      $(".alert").html("Unrecognized gesture. Please try again.");
     }
     if (_points.length > 0)
-    _g.clearRect(0, 0, _realcanvas.width, _realcanvas.height);
+       _g.clearRect(0, 0, _realcanvas.width, _realcanvas.height);
   }
 }
 function drawConnectedPoint(from, to)
