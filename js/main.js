@@ -69,7 +69,7 @@ function mouseMoveEvent(x, y)
 {
   if (_isDown)
   {
-    console.log('(' + x + ', ' + y + ')');
+    // console.log('(' + x + ', ' + y + ')');
     x -= _rc.x;
     y -= _rc.y - getScrollY();
     _points[_points.length] = new Point(x, y); // append
@@ -96,6 +96,8 @@ function mouseUpEvent(x, y)
         vid_seek_forward();
       } else if (result.Name == "seekBackward") {
         vid_seek_backward();
+      } else if (result.Name == "x") {
+        vid_mute();
       }
       $(".alert").hide();
     } else {
