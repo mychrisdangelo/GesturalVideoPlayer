@@ -11,7 +11,12 @@
 
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         </div> <!-- /container -->        
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -36,13 +41,9 @@
       </div>
     </div>
 
-    <div class="container container-center">
+    <div class="container">
       <div id="player">
         <video id="myVideo" controls width="640" height="480"        
-               onmousedown="mouseDownEvent(event.clientX, event.clientY)"
-               onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
-               onmouseup="mouseUpEvent(event.clientX, event.clientY)"
-               oncontextmenu="return false;"
                poster="http://media.w3.org/2010/05/sintel/poster.png">
          <source src="http://media.w3.org/2010/05/sintel/trailer.mp4"
                  type='video/mp4; codecs="avc1, mp4a"'>
@@ -61,8 +62,12 @@
         <div class="alert alert-warning" hidden></div>
 
       </div>
-
-      <canvas id="overlay" width="640" height="480"></canvas>
+    <canvas id="overlay" width="3000" height="3000"
+               onmousedown="mouseDownEvent(event.clientX, event.clientY)"
+               onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
+               onmouseup="mouseUpEvent(event.clientX, event.clientY)"
+               oncontextmenu="return false;"></canvas>
+      
     </div> <!-- container -->
 
     </body>

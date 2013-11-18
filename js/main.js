@@ -1,21 +1,19 @@
 //
 // Startup
 //
-var _isDown, _points, _r, _rc, _g, _realcanvas;
+var _isDown, _points, _r, _g, _realcanvas;
 function onLoadEvent()
 {
   _points = new Array();
   _r = new DollarRecognizer();
-  var canvas = document.getElementById('myVideo');
-  var overlay = document.getElementById('overlay');
+  var canvas = document.getElementById('overlay');
   _g = overlay.getContext('2d');
-      _g.fillStyle = "rgb(0,0,225)";
-      _g.strokeStyle = "rgb(0,0,225)";
-      _g.lineWidth = 3;
-      _g.fillStyle = "rgb(255,255,136)";
-      _realcanvas = getCanvasRect(overlay);
+  _g.fillStyle = "rgb(0,0,225)";
+  _g.strokeStyle = "rgb(0,0,225)";
+  _g.lineWidth = 3;
+  _g.fillStyle = "rgb(255,255,136)";
+  _realcanvas = getCanvasRect(overlay);
 
-  _rc = getCanvasRect(canvas); // canvas rect on page
   _isDown = false;
 }
 function getCanvasRect(canvas)
@@ -55,8 +53,8 @@ function mouseDownEvent(x, y)
   document.onselectstart = function() { return false; } // disable drag-select
   document.onmousedown = function() { return false; } // disable drag-select
   _isDown = true;
-  x -= _rc.x;
-  y -= _rc.y - getScrollY();
+  x -= _realcanvas.x;
+  y -= _realcanvas.y - getScrollY();
 
   _points.length = 1; // clear
   _points[0] = new Point(x, y);
@@ -70,8 +68,8 @@ function mouseMoveEvent(x, y)
   if (_isDown)
   {
     // console.log('(' + x + ', ' + y + ')');
-    x -= _rc.x;
-    y -= _rc.y - getScrollY();
+    x -= _realcanvas.x;
+    y -= _realcanvas.y - getScrollY();
     _points[_points.length] = new Point(x, y); // append
     var result = document.getElementById('showGestureTrail').checked;
     if (result === true) {
@@ -164,7 +162,7 @@ function drawConnectedPoint(from, to)
 function round(n, d) // round 'n' to 'd' decimals
 {
   d = Math.pow(10, d);
-  return Math.round(n * d) / d
+  return Math.round(n * d) / d;
 }
 //
 // Unistroke Adding and Clearing
