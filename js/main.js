@@ -88,21 +88,66 @@ function mouseUpEvent(x, y)
     _isDown = false;
     if (_points.length >= 10)
     {
+
+      var myVideo = document.getElementById("myVideo");
+      var playbackSpeed = myVideo.plabyackRate;
+      var playbackSpeedStr = "Normal";
+      switch (playbackSpeed) {
+        case 1:
+          playbackSpeedStr = "Normal";
+          break;
+        case 0.5:
+          playbackSpeedStr = "Half Speed";
+          break;
+        case 2:
+          playbackSpeedStr = "Double Speed";
+          break;
+      }
+
+      $(".alert-warning").hide();
+      $(".alert-success").show();
       var result = _r.Recognize(_points, false);
       console.log(result.Name);
       if (result.Name == "circle") {
         vid_play_pause();
-      } else if (result.Name == "seekForward") {
+        $(".alert-success").html("Play/Pause.");
+      } else if (result.Name == "left square bracket") {
         vid_seek_forward();
-      } else if (result.Name == "seekBackward") {
+        $(".alert-success").html("Seek Forward.");
+      } else if (result.Name == "right square bracket") {
+        $(".alert-success").html("Seek Backwards.");
         vid_seek_backward();
       } else if (result.Name == "x") {
         vid_mute();
+        $(".alert-success").html("Mute/Unmute.");
+      } else if (result.Name == "rectangle") {
+        vid_enlarge();
+        $(".alert-success").html("Enlarge video.");
+        $(".alert-success").html("Enlarge video. (Width: " + myVideo.width + ", Height: " + myVideo.height + ")");
+      } else if (result.Name == "triangle") {
+        vid_shrink();
+        $(".alert-success").html("Shrink video. (Width: " + myVideo.width + ", Height: " + myVideo.height + ")");
+      } else if (result.Name == "heart") {
+        vid_slowdown();
+        $(".alert-success").html("Slowing down video. Now at " + playbackSpeedStr + ".");
+      } else if (result.Name == "figure eight") {
+        vid_speedup();
+        $(".alert-success").html("Speeding up video. Now at " + playbackSpeedStr + ".");
+      } else if (result.Name == "caret") {
+        vid_volumeup();
+        $(".alert-success").html("Volume up. Now at " + Math.round(myVideo.volume/1*100) + "%.");
+      } else if (result.Name == "v") {
+        vid_volumedown();
+        $(".alert-success").html("Volume down. Now at " + Math.round(myVideo.volume/1*100) + "%.");
+      } else {
+        $(".alert-warning").hide();
+        $(".alert-success").show();
+        $(".alert-warning").html("Unrecognized gesture. Please try again.");
       }
-      $(".alert").hide();
     } else {
-      $(".alert").show();
-      $(".alert").html("Unrecognized gesture. Please try again.");
+      $(".alert-warning").show();
+      $(".alert-success").hide();
+      $(".alert-warning").html("Unrecognized gesture. Please try again.");
     }
     if (_points.length > 0)
        _g.clearRect(0, 0, _realcanvas.width, _realcanvas.height);

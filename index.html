@@ -23,10 +23,20 @@
     </head>
     <body onload="onLoadEvent()">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Gestural Video Player</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#about">Show Help</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
 
-
-    <div class="container">
+    <div class="container container-center">
       <div id="player">
         <video id="myVideo" controls width="640" height="480"        
                onmousedown="mouseDownEvent(event.clientX, event.clientY)"
@@ -40,39 +50,20 @@
                  type='video/ogg; codecs="theora, vorbis"'>
          Your user agent does not support the HTML5 Video element.
         </video>
+        
         <div class="checkbox">
           <label>
             <input type="checkbox" id="showGestureTrail" checked> Show Gesture Trail
           </label>
         </div>
 
-
+        <div class="alert alert-success" hidden></div>
         <div class="alert alert-warning" hidden></div>
 
-        <div id='buttons'>
-          <button onclick="vid_play_pause()">play/pause</button>
-          <button onclick="vid_seek_forward()">seek forward</button>
-          <button onclick="vid_seek_backward()">seek backward</button>
-          <button onclick="vid_mute()">mute/unmute</button>
-          <button onclick="document._video.currentTime-=10">currentTime-=10</button>
-          <button onclick="document._video.currentTime=50">currentTime=50</button><br>
-          <button onclick="document._video.playbackRate++">playbackRate++</button>
-          <button onclick="document._video.playbackRate--">playbackRate--</button>
-          <button onclick="document._video.playbackRate+=0.1">playbackRate+=0.1</button>
-          <button onclick="document._video.playbackRate-=0.1">playbackRate-=0.1</button><br>
-          <button onclick="document._video.volume+=0.1">volume+=0.1</button>
-          <button onclick="document._video.volume-=0.1">volume-=0.1</button>
-          <button onclick="document._video.muted=true">muted=true</button>
-          <button onclick="document._video.muted=false">muted=false</button><br>
-          <button onclick="switchVideo(0);">Sintel teaser</button>
-          <button onclick="switchVideo(1);">Bunny trailer</button>
-          <button onclick="switchVideo(2);">Bunny movie</button>
-          <button onclick="switchVideo(3);">Test movie</button>
-        </div>
       </div>
 
       <canvas id="overlay" width="640" height="480"></canvas>
-
+    </div> <!-- container -->
 
     </body>
 </html>
