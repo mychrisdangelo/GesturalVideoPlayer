@@ -211,20 +211,20 @@ function onClickDelete()
 $(function(){
   $('#showhelp').click(function(){
     if($('#helpscreen').is(':visible')){
-      $('#helpscreen').hide();
+      $('#helpscreen').fadeOut();
       $("#showhelp").html("Show Help");
     } else {
-      $('#helpscreen').show();
+      $('#helpscreen').fadeIn();
       $("#showhelp").html("Hide Help");
     }
   });
 
   $('#gesturalvidlink').click(function(){
-    $('#helpscreen').hide();
+    $('#helpscreen').fadein();
   });
 
   $('#alerthelper').click(function(){
-    $('#helpscreen').show();
+    $('#helpscreen').fadeIn();
   });
 
   $('#showgesturelink').click(function(){

@@ -56,19 +56,11 @@
          Your user agent does not support the HTML5 Video element.
         </video>
         
-        <div class="checkbox" hidden>
-            <input type="checkbox" id="showGestureTrail" checked hidden>
-        </div>
+
 
         <div class="alert alert-success" hidden></div>
-        <div class="alert alert-warning" hidden>
-        </div>
-
-
-
+        <div class="alert alert-warning" hidden></div>
       </div>
-
-      
     </div> <!-- container -->
           <canvas id="overlay" width="3000" height="3000"
                  onmousedown="mouseDownEvent(event.clientX, event.clientY)"
@@ -77,6 +69,9 @@
                  oncontextmenu="return false;"></canvas>
     <div id='helpscreen' class ='centered' hidden>
       <img id='img' src='images/helpscreen.png'/>
+    </div>
+    <div class="checkbox" hidden>
+        <input type="checkbox" id="showGestureTrail" checked hidden>
     </div>
     </body>
 </html>
