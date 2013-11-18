@@ -9,7 +9,12 @@
   color: #FFF; 
   text-align: center;
   background-color: rgba(221, 221, 221, 0.0);
-  top:0;
+  top:50px;
   z-index: 2147483647;
+}
 
+#helpscreen{
+  z-index: 2147483646;
+  position: absolute; 
+  top:50px;
 }

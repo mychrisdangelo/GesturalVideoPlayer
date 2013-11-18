@@ -2,6 +2,7 @@
 // Startup
 //
 var _isDown, _points, _r, _g, _realcanvas;
+
 function onLoadEvent()
 {
   _points = new Array();
@@ -16,6 +17,7 @@ function onLoadEvent()
 
   _isDown = false;
 }
+
 function getCanvasRect(canvas)
 {
   var w = canvas.width;
@@ -31,6 +33,7 @@ function getCanvasRect(canvas)
   }
   return {x: cx, y: cy, width: w, height: h};
 }
+
 function getScrollY()
 {
   var scrollY = 0;
@@ -45,6 +48,7 @@ function getScrollY()
   scrollY = window.pageYOffset; // FF
   return scrollY;
 }
+
 //
 // Mouse Events
 //
@@ -63,6 +67,7 @@ function mouseDownEvent(x, y)
     _g.fillRect(x - 4, y - 3, 9, 9);
   } 
 }
+
 function mouseMoveEvent(x, y)
 {
   if (_isDown)
@@ -77,6 +82,7 @@ function mouseMoveEvent(x, y)
     } 
   }
 }
+
 function mouseUpEvent(x, y)
 {
   document.onselectstart = function() { return true; } // enable drag-select
@@ -151,19 +157,22 @@ function mouseUpEvent(x, y)
        _g.clearRect(0, 0, _realcanvas.width, _realcanvas.height);
   }
 }
+
 function drawConnectedPoint(from, to)
-    {
-      _g.beginPath();
-      _g.moveTo(_points[from].X, _points[from].Y);
-      _g.lineTo(_points[to].X, _points[to].Y);
-      _g.closePath();
-      _g.stroke();
-    }
+{
+  _g.beginPath();
+  _g.moveTo(_points[from].X, _points[from].Y);
+  _g.lineTo(_points[to].X, _points[to].Y);
+  _g.closePath();
+  _g.stroke();
+}
+
 function round(n, d) // round 'n' to 'd' decimals
 {
   d = Math.pow(10, d);
   return Math.round(n * d) / d;
 }
+
 //
 // Unistroke Adding and Clearing
 //
@@ -177,6 +186,7 @@ function onClickAddExisting()
     drawText("\"" + name + "\" added. Number of \"" + name + "\"s defined: " + num + ".");
   }
 }
+
 function onClickAddCustom()
 {
   var name = document.getElementById('custom').value;
@@ -186,12 +196,30 @@ function onClickAddCustom()
     drawText("\"" + name + "\" added. Number of \"" + name + "\"s defined: " + num + ".");
   }
 }
+
 function onClickCustom()
 {
   document.getElementById('custom').select();
 }
+
 function onClickDelete()
 {
   var num = _r.DeleteUserGestures(); // deletes any user-defined unistrokes
   alert("All user-defined gestures have been deleted. Only the 1 predefined gesture remains for each of the " + num + " types.");
 }
+
+$(function(){
+  $('#showhelp').click(function(){
+    if($('#helpscreen').is(':visible')){
+      $('#helpscreen').hide();
+      $("#showhelp").html("Show Help");
+    } else {
+      $('#helpscreen').show();
+      $("#showhelp").html("Hide Help");
+    }
+  });
+
+    $('#gesturalvidlink').click(function(){
+      $('#helpscreen').hide();
+  });
+});

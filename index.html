@@ -35,7 +35,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#about">Show Help</a></li>
+            <li><a href="#" id="showhelp">Show Help</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -61,14 +61,18 @@
         <div class="alert alert-success" hidden></div>
         <div class="alert alert-warning" hidden></div>
 
+
+
       </div>
-    <canvas id="overlay" width="3000" height="3000"
-               onmousedown="mouseDownEvent(event.clientX, event.clientY)"
-               onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
-               onmouseup="mouseUpEvent(event.clientX, event.clientY)"
-               oncontextmenu="return false;"></canvas>
+      <canvas id="overlay" width="3000" height="3000"
+                 onmousedown="mouseDownEvent(event.clientX, event.clientY)"
+                 onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
+                 onmouseup="mouseUpEvent(event.clientX, event.clientY)"
+                 oncontextmenu="return false;"></canvas>
       
     </div> <!-- container -->
-
+    <div id='helpscreen' hidden>
+      <img id='img' src='images/helpscreen.png'/>
+    </div>
     </body>
 </html>
