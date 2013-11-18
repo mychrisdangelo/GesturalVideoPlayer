@@ -31,11 +31,12 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Gestural Video Player</a>
+          <a class="navbar-brand" id='gesturalvidlink' href="#">Gestural Video Player</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="#" id="showhelp">Show Help</a></li>
+            <li><a href="#" id="showgesturelink">Hide Gesture Trail</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -52,26 +53,26 @@
          Your user agent does not support the HTML5 Video element.
         </video>
         
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="showGestureTrail" checked> Show Gesture Trail
-          </label>
+        <div class="checkbox" hidden>
+            <input type="checkbox" id="showGestureTrail" checked hidden>
         </div>
 
         <div class="alert alert-success" hidden></div>
-        <div class="alert alert-warning" hidden></div>
+        <div class="alert alert-warning" hidden>
+        </div>
 
 
 
       </div>
-      <canvas id="overlay" width="3000" height="3000"
+
+      
+    </div> <!-- container -->
+          <canvas id="overlay" width="3000" height="3000"
                  onmousedown="mouseDownEvent(event.clientX, event.clientY)"
                  onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
                  onmouseup="mouseUpEvent(event.clientX, event.clientY)"
                  oncontextmenu="return false;"></canvas>
-      
-    </div> <!-- container -->
-    <div id='helpscreen' hidden>
+    <div id='helpscreen' class ='centered' hidden>
       <img id='img' src='images/helpscreen.png'/>
     </div>
     </body>

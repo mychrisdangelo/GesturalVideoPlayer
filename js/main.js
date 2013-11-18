@@ -219,7 +219,22 @@ $(function(){
     }
   });
 
-    $('#gesturalvidlink').click(function(){
-      $('#helpscreen').hide();
+  $('#gesturalvidlink').click(function(){
+    $('#helpscreen').hide();
+  });
+
+  $('#alerthelper').click(function(){
+    $('#helpscreen').show();
+  });
+
+  $('#showgesturelink').click(function(){
+    if($('#showGestureTrail').prop('checked')) {
+      $('#showGestureTrail').prop('checked', false);
+      $("#showgesturelink").html("Show Gesture Trail");
+    } else {
+      $('#showGestureTrail').prop('checked', true);
+      $("#showgesturelink").html("Hide Gesture Trail");
+    }
+
   });
 });
