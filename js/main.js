@@ -115,10 +115,10 @@ function mouseUpEvent(x, y)
       if (result.Name == "circle") {
         vid_play_pause();
         $(".alert-success").html("Play/Pause.");
-      } else if (result.Name == "left square bracket") {
+      } else if (result.Name == "right square bracket") {
         vid_seek_forward();
         $(".alert-success").html("Seek Forward.");
-      } else if (result.Name == "right square bracket") {
+      } else if (result.Name == "left square bracket") {
         $(".alert-success").html("Seek Backwards.");
         vid_seek_backward();
       } else if (result.Name == "x") {
