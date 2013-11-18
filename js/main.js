@@ -237,4 +237,10 @@ $(function(){
     }
 
   });
+
+  var position = $('#showhelp').offset();
+  console.log(position);
+  $('.arrow').css('left', position.left+25);
+
+  $('.arrow').delay(5000).fadeOut('slow');
 });
