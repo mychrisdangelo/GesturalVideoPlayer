@@ -94,13 +94,16 @@ function mouseUpEvent(x, y)
       var myVideo = document.getElementById("myVideo");
       var playbackSpeedStr = "Normal";
       var playbackSpeed = 1;
+      var displayString = "";
 
       $(".alert-warning").hide();
       $(".alert-success").show();
       var result = _r.Recognize(_points, false);
       if (result.Name == "circle") {
         vid_play_pause();
-        $(".alert-success").html("Play/Pause.");
+        displayString = "Play";
+        if (myVideo.paused) { displayString = "Paused"; }
+        $(".alert-success").html(displayString + ".");
       } else if (result.Name == "right square bracket") {
         vid_seek_forward();
         $(".alert-success").html("Seek Forward.");
@@ -109,14 +112,15 @@ function mouseUpEvent(x, y)
         vid_seek_backward();
       } else if (result.Name == "x") {
         vid_mute();
-        $(".alert-success").html("Mute/Unmute.");
+        displayString = "Unmuted";
+        if (myVideo.muted) { displayString = "Muted"; }
+        $(".alert-success").html(displayString + ".");
       } else if (result.Name == "rectangle") {
         vid_enlarge();
-        $(".alert-success").html("Enlarge video.");
-        $(".alert-success").html("Enlarge video. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
+        $(".alert-success").html("Enlarged video player. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
       } else if (result.Name == "triangle") {
         vid_shrink();
-        $(".alert-success").html("Shrink video. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
+        $(".alert-success").html("Shrank video player. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
       } else if (result.Name == "heart") {
         vid_slowdown();
         playbackSpeed = myVideo.playbackRate;
@@ -163,6 +167,7 @@ function mouseUpEvent(x, y)
       $(".alert-success").hide();
       $(".alert-warning").html("Unrecognized gesture. Please try again.");
     }
+    $('.alert').delay(3000).fadeOut('slow'); // show the arrow on load for 3.6 seconds
     if (_points.length > 0)
        _g.clearRect(0, 0, _rc.width, _rc.height);
   }

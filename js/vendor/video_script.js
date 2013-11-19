@@ -58,6 +58,7 @@ function vid_speedup() {
 
 function vid_volumeup() {
   var myVideo = document.getElementById("myVideo");
+  myVideo.muted = false;
   if ((myVideo.volume + 0.10) > 1) {
     myVideo.volume = 1;
   } else {
