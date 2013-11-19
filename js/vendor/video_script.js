@@ -40,15 +40,20 @@ function vid_shrink() {
 
 function vid_slowdown() {
   var myVideo = document.getElementById("myVideo");
-  myVideo.playbackRate -= 0.5;
-  if (myVideo.playbackRate < 0) {
-    myVideo.playbackRate = 0;
+  var newPlayback = myVideo.playbackRate / 2;
+  if (newPlayback <= 0.5) {
+    newPlayback = 0.5;
   }
+  myVideo.playbackRate = newPlayback;
 }
 
 function vid_speedup() {
   var myVideo = document.getElementById("myVideo");
-  myVideo.playbackRate += 0.5;
+  var newPlayback = myVideo.playbackRate * 2;
+  if (newPlayback >= 2) {
+    newPlayback = 2;
+  }
+  myVideo.playbackRate = newPlayback;
 }
 
 function vid_volumeup() {

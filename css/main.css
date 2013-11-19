@@ -10,11 +10,11 @@
   text-align: center;
   background-color: rgba(221, 221, 221, 0.0);
   top:50px;
-  z-index: 2147483646;
+  z-index: 2147483647;
 }
 
 #helpscreen{
-  z-index: 2147483645;
+  z-index: 2147483644;
   position: absolute; 
   top:50px;
 }
@@ -23,10 +23,11 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  /*margin-top:-150px;*/
-  margin-left:-200px;
+  margin-top:75px;
+  margin-left:-300px;
 }
 
+/* acknoweldgements: below code from http://codepen.io/dodozhang21/pen/siKtp */
 
 @-webkit-keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -122,14 +123,13 @@
 
 .arrow {
   position: fixed;
-  top: 50px;
-  /*left: 499px;*/
-/*  left: 50%;
-*/  margin-left: 0px;
+  top: 40px;
+  margin-left: 0px;
   width: 40px;
   height: 40px;
   background-image: url(../images/arrow.png);
   background-size: contain;
+  z-index: 2147483645;
 }
 
 .bounce {

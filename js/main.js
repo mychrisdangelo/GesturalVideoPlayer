@@ -94,24 +94,13 @@ function mouseUpEvent(x, y)
     {
 
       var myVideo = document.getElementById("myVideo");
-      var playbackSpeed = myVideo.plabyackRate;
+      
       var playbackSpeedStr = "Normal";
-      switch (playbackSpeed) {
-        case 1:
-          playbackSpeedStr = "Normal";
-          break;
-        case 0.5:
-          playbackSpeedStr = "Half Speed";
-          break;
-        case 2:
-          playbackSpeedStr = "Double Speed";
-          break;
-      }
+      var playbackSpeed = 1;
 
       $(".alert-warning").hide();
       $(".alert-success").show();
       var result = _r.Recognize(_points, false);
-      console.log(result.Name);
       if (result.Name == "circle") {
         vid_play_pause();
         $(".alert-success").html("Play/Pause.");
@@ -133,9 +122,33 @@ function mouseUpEvent(x, y)
         $(".alert-success").html("Shrink video. (Width: " + myVideo.width + ", Height: " + myVideo.height + ")");
       } else if (result.Name == "heart") {
         vid_slowdown();
+        playbackSpeed = myVideo.playbackRate;
+        switch (playbackSpeed) {
+          case 1:
+            playbackSpeedStr = "Normal";
+            break;
+          case 0.5:
+            playbackSpeedStr = "Half Speed";
+            break;
+          case 2:
+            playbackSpeedStr = "Double Speed";
+            break;
+        }
         $(".alert-success").html("Slowing down video. Now at " + playbackSpeedStr + ".");
       } else if (result.Name == "figure eight") {
         vid_speedup();
+        playbackSpeed = myVideo.playbackRate;
+        switch (playbackSpeed) {
+          case 1:
+            playbackSpeedStr = "Normal";
+            break;
+          case 0.5:
+            playbackSpeedStr = "Half Speed";
+            break;
+          case 2:
+            playbackSpeedStr = "Double Speed";
+            break;
+        }
         $(".alert-success").html("Speeding up video. Now at " + playbackSpeedStr + ".");
       } else if (result.Name == "caret") {
         vid_volumeup();
@@ -242,5 +255,5 @@ $(function(){
   console.log(position);
   $('.arrow').css('left', position.left+25);
 
-  $('.arrow').delay(5000).fadeOut('slow');
+  $('.arrow').delay(3500).fadeOut('slow');
 });
