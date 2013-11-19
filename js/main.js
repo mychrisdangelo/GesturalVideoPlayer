@@ -122,6 +122,8 @@ function mouseUpEvent(x, y)
         vid_shrink();
         $(".alert-success").html("Shrank video player. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
       } else if (result.Name == "heart") {
+        displayString = "Slowed down video playback speed. Now at ";
+        if (myVideo.playbackRate == 0.5) { displayString = "Can't slow down more. At slowest speed possible:  "; }
         vid_slowdown();
         playbackSpeed = myVideo.playbackRate;
         switch (playbackSpeed) {
@@ -135,8 +137,10 @@ function mouseUpEvent(x, y)
             playbackSpeedStr = "Double Speed";
             break;
         }
-        $(".alert-success").html("Slowing down video. Now at " + playbackSpeedStr + ".");
+        $(".alert-success").html(displayString + playbackSpeedStr + ".");
       } else if (result.Name == "figure eight") {
+        displayString = "Sped up video playback speed. Now at ";
+        if (myVideo.playbackRate == 2) { displayString = "Can't speed up more. At fastest speed possible: "; }
         vid_speedup();
         playbackSpeed = myVideo.playbackRate;
         switch (playbackSpeed) {
@@ -150,7 +154,7 @@ function mouseUpEvent(x, y)
             playbackSpeedStr = "Double Speed";
             break;
         }
-        $(".alert-success").html("Speeding up video. Now at " + playbackSpeedStr + ".");
+        $(".alert-success").html(displayString + playbackSpeedStr + ".");
       } else if (result.Name == "caret") {
         vid_volumeup();
         $(".alert-success").html("Volume up. Now at " + Math.round(myVideo.volume/1*100) + "%.");
@@ -167,7 +171,7 @@ function mouseUpEvent(x, y)
       $(".alert-success").hide();
       $(".alert-warning").html("Unrecognized gesture. Please try again.");
     }
-    $('.alert').delay(3000).fadeOut('slow'); // show the arrow on load for 3.6 seconds
+    $('.alert').delay(3000).fadeOut('slow'); 
     if (_points.length > 0)
        _g.clearRect(0, 0, _rc.width, _rc.height);
   }
