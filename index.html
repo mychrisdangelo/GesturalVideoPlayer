@@ -30,7 +30,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" id='gesturalvidlink' href="#">Gestural Video Player</a>
+          <a class="navbar-brand" href="#" id='gesturalvidlink'>Gestural Video Player</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -56,22 +56,26 @@
          Your user agent does not support the HTML5 Video element.
         </video>
         
-
-
         <div class="alert alert-success" hidden></div>
         <div class="alert alert-warning" hidden></div>
       </div>
     </div> <!-- container -->
-          <canvas id="overlay" width="3000" height="3000"
-                 onmousedown="mouseDownEvent(event.clientX, event.clientY)"
-                 onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
-                 onmouseup="mouseUpEvent(event.clientX, event.clientY)"
-                 oncontextmenu="return false;"></canvas>
+    <!-- this is a hack to get the canvas full screen and so that main.js
+         is knowledgeable of the size of the canvas up front -->
+    <canvas id="overlay" width="3000" height="3000"
+           onmousedown="mouseDownEvent(event.clientX, event.clientY)"
+           onmousemove="mouseMoveEvent(event.clientX, event.clientY)"
+           onmouseup="mouseUpEvent(event.clientX, event.clientY)"
+           oncontextmenu="return false;">
+    </canvas>
+    
     <div id='helpscreen' class ='centered' hidden>
       <img id='img' src='images/helpscreen.png'/>
     </div>
+    
     <div class="checkbox" hidden>
         <input type="checkbox" id="showGestureTrail" checked hidden>
     </div>
+    
     </body>
 </html>

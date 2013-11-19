@@ -1,7 +1,7 @@
 //
 // Startup
 //
-var _isDown, _points, _r, _g, _realcanvas;
+var _isDown, _points, _r, _g, _rc;
 
 function onLoadEvent()
 {
@@ -13,8 +13,7 @@ function onLoadEvent()
   _g.strokeStyle = "rgb(0,0,225)";
   _g.lineWidth = 3;
   _g.fillStyle = "rgb(255,255,136)";
-  _realcanvas = getCanvasRect(overlay);
-
+  _rc = getCanvasRect(overlay);
   _isDown = false;
 }
 
@@ -43,7 +42,7 @@ function getScrollY()
   // }
   // else if (typeof(window.pageYOffset) != 'undefined')
   // {
-    
+  //
   // }
   scrollY = window.pageYOffset; // FF
   return scrollY;
@@ -57,8 +56,8 @@ function mouseDownEvent(x, y)
   document.onselectstart = function() { return false; } // disable drag-select
   document.onmousedown = function() { return false; } // disable drag-select
   _isDown = true;
-  x -= _realcanvas.x;
-  y -= _realcanvas.y - getScrollY();
+  x -= _rc.x;
+  y -= _rc.y - getScrollY();
 
   _points.length = 1; // clear
   _points[0] = new Point(x, y);
@@ -73,8 +72,8 @@ function mouseMoveEvent(x, y)
   if (_isDown)
   {
     // console.log('(' + x + ', ' + y + ')');
-    x -= _realcanvas.x;
-    y -= _realcanvas.y - getScrollY();
+    x -= _rc.x;
+    y -= _rc.y - getScrollY();
     _points[_points.length] = new Point(x, y); // append
     var result = document.getElementById('showGestureTrail').checked;
     if (result === true) {
@@ -92,9 +91,7 @@ function mouseUpEvent(x, y)
     _isDown = false;
     if (_points.length >= 10)
     {
-
       var myVideo = document.getElementById("myVideo");
-      
       var playbackSpeedStr = "Normal";
       var playbackSpeed = 1;
 
@@ -116,10 +113,10 @@ function mouseUpEvent(x, y)
       } else if (result.Name == "rectangle") {
         vid_enlarge();
         $(".alert-success").html("Enlarge video.");
-        $(".alert-success").html("Enlarge video. (Width: " + myVideo.width + ", Height: " + myVideo.height + ")");
+        $(".alert-success").html("Enlarge video. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
       } else if (result.Name == "triangle") {
         vid_shrink();
-        $(".alert-success").html("Shrink video. (Width: " + myVideo.width + ", Height: " + myVideo.height + ")");
+        $(".alert-success").html("Shrink video. (Width: " + myVideo.width + "px, Height: " + myVideo.height + "px)");
       } else if (result.Name == "heart") {
         vid_slowdown();
         playbackSpeed = myVideo.playbackRate;
@@ -167,7 +164,7 @@ function mouseUpEvent(x, y)
       $(".alert-warning").html("Unrecognized gesture. Please try again.");
     }
     if (_points.length > 0)
-       _g.clearRect(0, 0, _realcanvas.width, _realcanvas.height);
+       _g.clearRect(0, 0, _rc.width, _rc.height);
   }
 }
 
@@ -233,7 +230,7 @@ $(function(){
   });
 
   $('#gesturalvidlink').click(function(){
-    $('#helpscreen').fadein();
+    $('#helpscreen').fadeOut();
   });
 
   $('#alerthelper').click(function(){
@@ -248,12 +245,9 @@ $(function(){
       $('#showGestureTrail').prop('checked', true);
       $("#showgesturelink").html("Hide Gesture Trail");
     }
-
   });
 
   var position = $('#showhelp').offset();
-  console.log(position);
-  $('.arrow').css('left', position.left+25);
-
-  $('.arrow').delay(3500).fadeOut('slow');
+  $('.arrow').css('left', position.left+25); // show the arrow under "show help"
+  $('.arrow').delay(3500).fadeOut('slow'); // show the arrow on load for 3.6 seconds
 });

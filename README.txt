@@ -8,6 +8,4 @@ Getting Started:
 
 Open index.html in Google Chrome
 
-TODO:
 
-Full screen canvas is faxed by enormous size 3000x3000 canvas
